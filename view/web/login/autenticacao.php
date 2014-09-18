@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <!--<link href="css/loginweb.css" rel=”stylesheet” type=”text/css” />-->
+    </head>
+    <body style="
+          height: 300px;
+          width: available;">
+
+
+        <div class="form-group">
+            <form method="POST"  class="navbar-form navbar-left" action="?controller=Login&acao=autenticar" border=1
+                  style="
+                  background: #eeeeee;
+                  border: black;
+                  border-style: solid; 
+                  border-width: 3px;
+                  border-radius: 20px;
+                  padding: 13px;
+                  width: 290px;
+                  height: content-box;
+                  margin-left: 50%;
+          text-align: center;
+                  
+                  " >
+
+
+                <p style="font-weight: bold; font-size: 20px; font-family: monospace; background-color: #ffffff; height: 45px; padding-top: 10px; border-radius: 8px ">Login</p>
+                <div class="input-group" style="padding-bottom: 5px">
+                   
+                    <span class="input-group-addon">@</span>
+                    <input type="text" class="form-control" name="email" placeholder="E-mail" style="width: 100%;">
+                </div>
+
+                <div class="input-group">
+                    <span class="input-group-addon">***</span>
+                    <input type="password" name="senha" class="form-control"  placeholder="Senha" style="width: 100%">
+                </div>
+          
+                
+                <input type="submit"  value="Logar" class="btn btn-default" style="width: 100%; margin-top: 10px; height: 40px; border-radius: 8px">
+
+            </form>
+
+        </div>
+    </body>
+
+
+
+</html>
