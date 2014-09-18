@@ -1,5 +1,21 @@
-<h1>Visitas</h1>
-<!--<p><strong> <a href="?controller=Visita&acao=formCadastrarVisita">Cadastrar novo usuario</a>-->
+<head>
+    <style type="text/css">
+        td {
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 5px;
+            text-align: center;
+
+        }
+        tr {
+
+        }
+    </style>
+
+</head>
+<div style="margin: 20px;">
+    <h1>Visitas</h1>
+    <!--<p><strong> <a href="?controller=Visita&acao=formCadastrarVisita">Cadastrar novo usuario</a>-->
 </strong>
 </p>
 
@@ -8,7 +24,7 @@
 
 
 <table border=2 cellspacing=0 >
-    <tr><td>id</td><td>Empresa</td><td>Hora Entrada</td><td>Hora Saída</td><td>Descrição</td><td>Pendencias</td><td>Corretiva</td><td>Usuário</td><td>Localização</td><td colspan="2">Ações</td></tr>
+    <tr><td>id</td><td>Empresa</td><td>Hora Entrada</td><td>Hora Saída</td><td>Descrição</td><td>Pendencias</td><td>Corretiva</td><td>Usuário</td><td>Localização</td><td>Hora do Cadastro</td><td colspan="2">Ações</td></tr>
     <?php
     $listaVisitas = $_REQUEST['listaVisita'];
 
@@ -22,6 +38,7 @@
         $corretiva = $visita->getCorretiva();
         $usuario = $visita->getUsuario();
         $localization = $visita->getLocalization();
+        $horaLocal = $visita->getHoraLocal();
 
 
 
@@ -37,6 +54,7 @@
             <td>$corretiva</td>
             <td>$usuario</td>
             <td>$localization</td>
+            <td>$horaLocal</td>
      
                 
             <td>
@@ -53,3 +71,4 @@
     }
     ?>
 </table>
+</div>

@@ -11,8 +11,9 @@ class Visita {
     private $horaDeInicio;
     private $horaDeTermino;
     private $localization;
+    private $horaLocal;
 
-    function __construct($id, $empresa, $usuario, $descricao, $pendencias, $corretiva, $horaDeInicio, $horaDeTermino, $localization) {
+    function __construct($id, $empresa, $usuario, $descricao, $pendencias, $corretiva, $horaDeInicio, $horaDeTermino, $localization, $horaLocal) {
         $this->id = $id;
         $this->empresa = $empresa;
         $this->usuario = $usuario;
@@ -22,6 +23,7 @@ class Visita {
         $this->horaDeInicio = $horaDeInicio;
         $this->horaDeTermino = $horaDeTermino;
         $this->localization = $localization;
+        $this->horaLocal = $horaLocal;
     }
 
     public function getId() {
@@ -44,6 +46,10 @@ class Visita {
         return $this->pendencias;
     }
 
+    public function getCorretiva() {
+        return $this->corretiva;
+    }
+
     public function getHoraDeInicio() {
         return $this->horaDeInicio;
     }
@@ -52,8 +58,12 @@ class Visita {
         return $this->horaDeTermino;
     }
 
-    public function getLocalizacao() {
-        return $this->localizacao;
+    public function getLocalization() {
+        return $this->localization;
+    }
+
+    public function getHoraLocal() {
+        return $this->horaLocal;
     }
 
     public function setId($id) {
@@ -76,10 +86,6 @@ class Visita {
         $this->pendencias = $pendencias;
     }
 
-    public function getCorretiva() {
-        return $this->corretiva;
-    }
-
     public function setCorretiva($corretiva) {
         $this->corretiva = $corretiva;
     }
@@ -88,12 +94,16 @@ class Visita {
         $this->horaDeInicio = $horaDeInicio;
     }
 
-    public function getLocalization() {
-        return $this->localization;
+    public function setHoraDeTermino($horaDeTermino) {
+        $this->horaDeTermino = $horaDeTermino;
     }
 
     public function setLocalization($localization) {
         $this->localization = $localization;
+    }
+
+    public function setHoraLocal($horaLocal) {
+        $this->horaLocal = $horaLocal;
     }
 
 }

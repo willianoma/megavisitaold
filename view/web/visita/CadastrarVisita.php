@@ -1,6 +1,8 @@
 <head>
-<p id="demo" >Clique para localizar</p>
-<button onclick="getLocation()">Localizar</button>
+<div class="divtop">
+    <p id="demo" >Clique para localizar</p>
+    <button class="Buttons" onclick="getLocation()">Localizar</button>
+</div>
 <script type='text/javascript'>
 
     var x = document.getElementById("demo");
@@ -28,68 +30,48 @@
     }
 </script>  
 
-<!--<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
-<section>
-    <article>
-        <p><span id="status">Por favor aguarde enquanto nós tentamos locar você...</span></p>
-    </article>
-</section>
-<script>
-    function success(position) {
-        var s = document.querySelector('#status');
-
-        if (s.className == 'success') {
-            return;
-        }
-
-        s.innerHTML = "Você foi localizado!";
-        s.className = 'success';
-
-        var mapcanvas = document.createElement('div');
-        mapcanvas.id = 'mapcanvas';
-        mapcanvas.style.height = '30px';
-        mapcanvas.style.width = '30px';
-
-        document.querySelector('article').appendChild(mapcanvas);
-
-        var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-
-        var myOptions = {
-            zoom: 15,
-            center: latlng,
-            mapTypeControl: false,
-            navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL},
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-
-        var map = new google.maps.Map(document.getElementById("mapcanvas"), myOptions);
-        var marker = new google.maps.Marker({
-            position: latlng,
-            map: map,
-            title: "Você está aqui!"
-        });
-
+<style type="text/css">
+    select {
+        height: 40px;
+        width: 200px;
+        font-size: 16px;
+        font-weight: bold;
     }
-
-    function error(msg) {
-        var s = document.querySelector('#status');
-        s.innerHTML = typeof msg == 'string' ? msg : "falhou";
-        s.className = 'fail';
-    }
-
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(success, error);
-    } else {
-        error('Seu navegador não suporta <b style="color:black;background-color:#ffff66">Geolocalização</b>!');
+    textarea{
+        height: 100px;
+        min-width: 100%;
     }
 
 
-</script>-->
+    .divPrincipal {
+        margin-left: 20px;
+        max-width: 1013px;
+    }
+    .forms {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        width: auto;
+    }
+
+    .reponsive{
+        width: auto;
+
+    }
+    .divtop{
+        margin-left: 20px;
+        margin-top: 15px;
+    }
+    .Buttons{
+        margin-top: 10px;
+        height: 60px;
+        width: 200px
+    }
+
+
+
+</style>
 
 </head>
-
-
-
 
 <?php
 $listaEmpresa = $_REQUEST['listaEmpresa'];
@@ -102,62 +84,65 @@ foreach ($listaUsuario as $usuario) {
     $nome = $usuario->getNome();
 }
 ?>
+
 <br>
-<form method="POST" action="?controller=Visita&acao=cadastrarVisita">
-    <div style="width: 1200;">
 
-        <label>Empresas</label>
-        <select size="1" name="empresaVisita" required="">
-            <option selected value="">Empresas</option>
+<div class="divPrincipal">
+    <div class="reponsive">
+        <form method="POST" action="?controller=Visita&acao=cadastrarVisita">
 
-            <?php
-            foreach ($listaEmpresa as $empresa) {
-                $razao = $empresa->getRazaoSocial();
-                echo "<option value='$razao'>$razao</option>";
-            }
-            ?>
 
-        </select>
-        <label>Usuário</label>
-        <select size="1" name="usuarioVisita" required="">
-            <option selected value="">Usuários</option>
 
-            <?php
-            foreach ($listaUsuario as $usuario) {
-                $nome = $usuario->getNome();
-                echo "<option value='$nome'>$nome</option>";
-            }
-            ?>
+            <select  name="empresaVisita" required="">
+                <option selected value="">Empresas</option>
 
-        </select>
+                <?php
+                foreach ($listaEmpresa as $empresa) {
+                    $razao = $empresa->getRazaoSocial();
+                    echo "<option value='$razao'>$razao</option>";
+                }
+                ?>
+            </select>
 
-        <label>Hora de Entrada</label>
-        <input type="datetime-local" name="horaDeInicioVisita" required=""/>
-        <label>Hora de Saída</label>
-        <input type="datetime-local" name="horaDeTerminoVisita" required=""/>
+            <select name="usuarioVisita" required="">
+                <option selected value="">Usuários</option>
 
-        <input type='hidden' name='var_escondida' value='' id='var_escondida'  />
+                <?php
+                foreach ($listaUsuario as $usuario) {
+                    $nome = $usuario->getNome();
+                    echo "<option value='$nome'>$nome</option>";
+                }
+                ?>
 
+            </select>
+
+            <label>Hora de Entrada</label>
+            <input type="datetime-local" name="horaDeInicioVisita" required=""/>
+            <label>Hora de Saída</label>
+            <input type="datetime-local" name="horaDeTerminoVisita" required=""/>
+
+            <input type='hidden' name='var_escondida' value='' id='var_escondida'  />
+
+            <div class="forms">
+                <label>Descrição</label>  
+
+                <textarea name="descricaoVisita"  required=""></textarea>
+            </div>
+            <div class="forms">
+                <label>Pendencias</label>
+
+                <textarea name="pendenciasVisita"  required=""></textarea>
+            </div>
+            <div>
+                <label>Visita Corretiva?</label>
+                <input type="radio" name="corretivaVisita" Value="YES"/>Sim
+                <input type="radio" name="corretivaVisita" Value="NO" checked=""/>Não
+            </div>
+
+
+
+            <input class="Buttons" type="submit" name="cadastrarVisita" value="Cadastrar Visita"/>
+
+        </form>
     </div>
-
-    <br>
-
-    <div style="width: 1000;">
-        <label>Descrição</label>  
-        <br>
-        <textarea name="descricaoVisita" style="width: 100%; height: 300" required=""></textarea>
-    </div>
-    <div style="width: 1000;">
-        <label>Pendencias</label>
-        <br>
-        <textarea name="pendenciasVisita" style="width: 100%; height: 300" required=""></textarea>
-        <br>
-        <label>Visita Corretiva?</label>
-        <input type="radio" name="corretivaVisita" Value="YES"/>Sim
-        <input type="radio" name="corretivaVisita" Value="NO" checked=""/>Não
-    </div>
-    <div style="width: 1000;">
-
-        <input type="submit" name="cadastrarVisita" value="Cadastrar Visita" onclick="getLocation()"/>
-    </div>
-</form>
+</div>

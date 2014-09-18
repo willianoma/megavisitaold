@@ -1,3 +1,5 @@
+<div style="
+     margin: 20px">
 <form method="POST" action="?controller=Usuario&acao=cadastrarUsuario">
     <label>Nome:</label>
     <input type="text" name="nomeUsuario">
@@ -15,3 +17,4 @@
     <input type="submit" value="Cadastrar" name="botao"/>
 </form>
 
+</div>

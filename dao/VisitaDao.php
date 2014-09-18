@@ -12,7 +12,7 @@ class VisitaDao {
         $result = mysql_query($sql) or die(mysql_error());
         $lista = array();
         while ($dados = mysql_fetch_array($result)) {
-            $visita = new Visita($dados['id'], $dados['empresa'], $dados['usuario'], $dados['descricao'], $dados['pendencias'], $dados['corretiva'], $dados['horaDeInicio'], $dados['horaDeTermino'], $dados['localization']);
+            $visita = new Visita($dados['id'], $dados['empresa'], $dados['usuario'], $dados['descricao'], $dados['pendencias'], $dados['corretiva'], $dados['horaDeInicio'], $dados['horaDeTermino'], $dados['localization'], $dados['horaLocal']);
             $visita->setId($dados['id']);
             $lista[] = $visita;
         }
@@ -20,11 +20,12 @@ class VisitaDao {
     }
 
     function cadastrar($visita) {
-        $sql = mysql_query("INSERT INTO $this->tabela_bd(empresa,usuario,descricao,pendencias,corretiva,horaDeInicio,horaDeTermino,localization) VALUES('" . $visita->getEmpresa() . "','" . $visita->getUsuario() . "','" . $visita->getDescricao() . "','" . $visita->getPendencias() . "','" . $visita->getCorretiva() . "','" . $visita->getHoraDeInicio() . "','" . $visita->getHoraDeTermino() . "','" . $visita->getLocalization() . "')");
+        $sql = mysql_query("INSERT INTO $this->tabela_bd(empresa,usuario,descricao,pendencias,corretiva,horaDeInicio,horaDeTermino,localization,horaLocal) VALUES('" . $visita->getEmpresa() . "','" . $visita->getUsuario() . "','" . $visita->getDescricao() . "','" . $visita->getPendencias() . "','" . $visita->getCorretiva() . "','" . $visita->getHoraDeInicio() . "','" . $visita->getHoraDeTermino() . "','" . $visita->getLocalization() . "','" . $visita->getHoraLocal() . "')");
         if ($sql) {
             echo "Cadastrado com sucesso!!";
         } else {
-            echo "Falha ao cadastrar." . mysql_error();
+            echo "Falha ao cadastrar." .
+            mysql_error();
         }
         mysql_close();
     }
@@ -32,16 +33,20 @@ class VisitaDao {
     function editar($visita) {
 
         $sql = "UPDATE $this->tabela_bd SET ";
-        $sql .= "empresa='" . $visita->getEmpresa() . "',usuario='" . $visita->getUsuario() . "',descricao='" . $visita->getDescricao() . "',pendencias='" . $visita->getPendencias() . "',corretiva='" . $visita->getCorretiva() . "',horaDeInicio='" . $visita->getHoraDeInicio() . "',horaDeTermino='" . $visita->getHoraDeTermino() . "',localization='" . $visita->getLocalization() . "' ";
-        $sql .= "where id=" . $usuarios->getId();
-        mysql_query($sql) or die($sql);
+        $sql .= "empresa='" . $visita->getEmpresa() . "',usuario='" . $visita->getUsuario() . "',descricao='" . $visita->getDescricao() . "',pendencias='" . $visita->getPendencias() . "',corretiva='" . $visita->getCorretiva() . "',horaDeInicio='" . $visita->getHoraDeInicio() . "',horaDeTermino='" . $visita->getHoraDeTermino() . "',localization='" . $visita->getLocalization() . $visita->getHoraLocal() . "' ";
+        $sql .= "where id=" . $visita->getId();
+        mysql_query($sql) or die($sql)
+
+        ;
         echo 'Usuário editado com sucesso!';
     }
 
     function deletar($visita) {
 
         $sql = "delete from $this->tabela_bd where id =" . $visita->getId();
-        mysql_query($sql) or die($sql);
+        mysql_query($sql) or die($sql)
+
+        ;
         echo 'Visita deletado com sucesso!';
     }
 
@@ -51,7 +56,7 @@ class VisitaDao {
         //echo mysql_num_rows($result);
 //        $objEmpresa = null;
         while ($dados = mysql_fetch_array($result)) {
-            $visita = new Visita($dados['id'], $dados['empresa'], $dados['usuario'], $dados['descricao'], $dados['pendencias'], $dados['corretiva'], $dados['horaDeInicio'], $dados['horaDeTermino'], $dados['localization']);
+            $visita = new Visita($dados['id'], $dados['empresa'], $dados['usuario'], $dados['descricao'], $dados['pendencias'], $dados['corretiva'], $dados['horaDeInicio'], $dados['horaDeTermino'], $dados['localization'], $dados['horaLocal']);
             $visita->setId($item['id']);
         }
         return $visita;

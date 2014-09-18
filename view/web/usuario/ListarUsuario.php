@@ -1,24 +1,40 @@
-<h1>Usuários</h1>
+<head>
+    <style type="text/css">
+        td {
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 5px;
+            text-align: center;
 
-<p><strong> <a href="?controller=Usuario&acao=formAdd">Cadastrar novo usuario</a>
-    </strong>
-</p>
-<table border=2 cellspacing=0 >
-    <tr><td>id</td><td>Nome</td><td>Senha</td><td>CPF</td><td>E-mail</td><td>Função</td><td>Permição</td><td colspan="2">Ações</td></tr>
-    <?php
-    $lista = $_REQUEST['listaFuncinario'];
+        }
+        tr {
 
-    foreach ($lista as $usuario) {
-        $id = $usuario->getId();
-        $nome = $usuario->getNome();
-        $senha = $usuario->getSenha();
-        $cpf = $usuario->getCpf();
-        $email = $usuario->getEmail();
-        $funcao = $usuario->getFuncao();
-        $permicao = $usuario->getPermicao();
+        }
+    </style>
+
+</head>
+<div style="margin: 20px;">
+    <h1>Usuários</h1>
+
+    <p><strong> <a href="?controller=Usuario&acao=formAdd">Cadastrar novo usuario</a>
+        </strong>
+    </p>
+    <table border=2>
+        <tr><td>id</td><td>Nome</td><td>Senha</td><td>CPF</td><td>E-mail</td><td>Função</td><td>Permição</td><td colspan="2">Ações</td></tr>
+        <?php
+        $lista = $_REQUEST['listaFuncinario'];
+
+        foreach ($lista as $usuario) {
+            $id = $usuario->getId();
+            $nome = $usuario->getNome();
+            $senha = $usuario->getSenha();
+            $cpf = $usuario->getCpf();
+            $email = $usuario->getEmail();
+            $funcao = $usuario->getFuncao();
+            $permicao = $usuario->getPermicao();
 
 
-        echo "<tr>
+            echo "<tr>
             <td>$id</td>
             <td>$nome</td>
             <td>$senha</td>
@@ -41,6 +57,7 @@
 		</form>
            </td>
              ";
-    }
-    ?>
-</table>
+        }
+        ?>
+    </table>
+</div>

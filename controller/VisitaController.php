@@ -10,6 +10,7 @@ class VisitaController {
     private $empresaDao;
     private $usuarioDao;
     private $visitaDao;
+    private $erro;
 
     function listar() {
         $_REQUEST['listaVisita'] = $this->visitaDao->listar();
@@ -28,19 +29,20 @@ class VisitaController {
         $_REQUEST['listaUsuario'] = $this->usuarioDao->listar();
         include_once 'view/web/visita/CadastrarVisita.php';
     }
-      public function formDeletarVisita() {
+
+    public function formDeletarVisita() {
         $id = $_POST['id'];
         $_REQUEST['visita'] = $this->visitaDao->getVisita($id);
         include_once 'view/web/visita/DeletarVisita.php';
     }
 
     public function formEdit() {
-          $id = $_POST['id'];
+        $id = $_POST['id'];
         $_REQUEST['visita'] = $this->visitaDao->getVisita($id);
         include_once 'view/web/visita/EditarVisita.php';
     }
-    
-       function formCadastrarVisitaMobile() {
+
+    function formCadastrarVisitaMobile() {
         $_REQUEST['listaEmpresa'] = $this->empresaDao->listar();
         $_REQUEST['listaUsuario'] = $this->usuarioDao->listar();
         include_once 'view/mobile/visita/CadastrarVisita.php';
@@ -68,6 +70,7 @@ class VisitaController {
 
     function cadastrarVisita() {
 
+
         $empresa = $_POST['empresaVisita'];
         $usuario = $_POST['usuarioVisita'];
         $descricao = $_POST['descricaoVisita'];
@@ -75,16 +78,24 @@ class VisitaController {
         $corretiva = $_POST['corretivaVisita'];
         $horaDeInicio = $_POST['horaDeInicioVisita'];
         $horaDeTermino = $_POST['horaDeTerminoVisita'];
-        $localization = $_POST['var_escondida'];
+        if (empty($_POST['var_escondida'])) {
+            $this->erro = "Impossivel cadastrar sem localização";
+            echo $this->erro;
+            die();
+        } else
+            $localization = $_POST['var_escondida'];
 
+        date_default_timezone_set('UTC');
+        $horaLocal = date('d-m-Y H:i:s');
 
         $id = "";
 
-        $visita = new Visita($id, $empresa, $usuario, $descricao, $pendencias, $corretiva, $horaDeInicio, $horaDeTermino, $localization);
+        $visita = new Visita($id, $empresa, $usuario, $descricao, $pendencias, $corretiva, $horaDeInicio, $horaDeTermino, $localization, $horaLocal);
         $this->visitaDao->cadastrar($visita);
     }
 
-    function verNoMapa(){
+    function verNoMapa() {
         include_once 'view/web/visita/MostrarMapa.php';
     }
+
 }

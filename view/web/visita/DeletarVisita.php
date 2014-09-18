@@ -10,7 +10,6 @@ $pendencias = $visita->getPendencias();
 $corretiva = $visita->getCorretiva();
 $usuario = $visita->getUsuario();
 $localization = $visita->getLocalizarion();
-
 ?>
 <form name='form1' method="post" action="?controller=Usuario&acao=deletarUsuario">
     <label for="id">id:</label>
@@ -36,6 +35,7 @@ $localization = $visita->getLocalizarion();
     <input type="text" name="permicaoUsuario" required  readonly="readonly" value='<?php echo $permicao; ?>'>
     <br>
     <input type="hidden" name="id" value='<?php echo $id; ?>'>
+    <input type="hidden" name="horaLocal" value="teste hora local"/>
     <br>
     <input type="submit" value="Deletar" name="Deletar">
 </form>
