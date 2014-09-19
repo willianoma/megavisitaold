@@ -1,5 +1,5 @@
 ﻿<meta name="viewport" content="width=320" charset="utf-8">
-<head>
+<!--<head>
 
 <div class="divtop">
     <p id="demo" > Antes de tudo, CLIQUE EM LOCALIZAR</p>
@@ -37,8 +37,41 @@
 </div>
 
 
-</head>
+</head>-->
 
+<head>
+
+<div class="divtop">
+    <p id="demo" >Clique para localizar</p>
+    <button class="Buttons" onclick="getLocation()">Localizar</button>
+</div>
+
+<script type='text/javascript'>
+
+    var x = document.getElementById("demo");
+
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+    }
+
+    function showPosition(position) {
+        x.innerHTML = "Latitude: " + position.coords.latitude +
+                "<br>Longitude: " + position.coords.longitude;
+        var lat = position.coords.latitude;
+        var long = position.coords.longitude;
+        envia_form(lat, long);
+
+    }
+
+    function envia_form(lat, long) {
+        var strEscondida = lat + " , " + long;
+        document.getElementById('var_escondida').value = strEscondida;
+    }
+</script>  
 
 <style type="text/css">
     select {

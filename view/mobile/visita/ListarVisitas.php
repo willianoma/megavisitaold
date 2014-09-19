@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=320" charset="utf-8">
 
 
-<table border=2 cellspacing=0 >
+<table border=2 cellspacing=0 style="max-width: 320px;">
     <tr><td>id</td><td>Empresa</td><td>Hora Entrada</td><td>Hora Saída</td><td>Descrição</td><td>Pendencias</td><td>Corretiva</td><td>Usuário</td><td>Localização</td><td colspan="2">Ações</td></tr>
     <?php
     $listaVisitas = $_REQUEST['listaVisita'];

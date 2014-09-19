@@ -15,8 +15,8 @@
         <td><a href="index.php"> Home</a></td>
         <td><a href="?controller=Empresa&acao=listar">Empresas</a></td>
         <td><a href="?controller=Usuario&acao=listar">Usuários</a></td>
-        <td><a href="?controller=Visita&acao=formCadastrarVisita">Cadastrar Visita</a></td>
-        <td><a href="?controller=Visita&acao=listar">Listar Visita</a></td>
+        <td><a href="?controller=Visita&acao=formCadastrarVisitaMobile">Cadastrar Visita</a></td>
+        <td><a href="?controller=Visita&acao=listarMobile">Listar Visita</a></td>
         <td><a href="?controller=BD&acao=configForm">Configurar Banco</a></td>
         <td><a href="index.php?controller=Login&acao=logout">Logout</a> </td>
     </tr>

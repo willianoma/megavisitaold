@@ -6,21 +6,21 @@
 </head>
 
 
-<div style="width: 100%; ">
+<div style="width: 100%; padding: 10px;">
     <form method="POST" action="?controller=Login&acao=autenticar">
 
-        <h1 style="text-align: center; width: 100%"><span class="label label-default" >Sistema de Visita Mega</span></h1>
+        <h2 style="text-align: center; width: 100%"><span class="label label-default" >Sistema de Visita Mega</span></h2>
 
         <BR>
 
         <div class="input-group">
-            <span class="input-group-addon"></span>
+            <span class="input-group-addon">@</span>
             <input type="text" name="email"  class="form-control" placeholder="Username" style="height: 50px">
         </div>
         <BR>
 
         <div class="input-group">
-            <span class="input-group-addon"></span>
+            <span class="input-group-addon">**</span>
             <input type="password" name="senha" class="form-control" placeholder="Password"  style="height: 50px">
         </div>
 

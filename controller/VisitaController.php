@@ -18,6 +18,12 @@ class VisitaController {
         include 'view/web/visita/ListarVisitas.php';
     }
 
+        function listarMobile() {
+        $_REQUEST['listaVisita'] = $this->visitaDao->listar();
+        $_REQUEST['listaEmpresa'] = $this->empresaDao->listar();
+        include 'view/mobile/visita/ListarVisitas.php';
+    }
+    
     function getUsuarioLogado() {
         $_REQUEST['usuarioLogado'];
         $usuarioSessao = $_SESSION['user'];
