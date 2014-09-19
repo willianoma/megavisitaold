@@ -83,7 +83,11 @@ $listaUsuario = $_REQUEST['listaUsuario'];
 foreach ($listaUsuario as $usuario) {
     $nome = $usuario->getNome();
 }
+
+$usuarioLogado = $_REQUEST['usuarioLogado'];
 ?>
+
+
 
 <br>
 
@@ -91,7 +95,10 @@ foreach ($listaUsuario as $usuario) {
     <div class="reponsive">
         <form method="POST" action="?controller=Visita&acao=cadastrarVisita">
 
-
+            <!--<label>Usuário: </label>-->
+            <select name="usuarioVisita" required="">
+                <option selected value="<?php echo $usuarioLogado; ?>"><?php echo $usuarioLogado; ?></option>
+            </select>
 
             <select  name="empresaVisita" required="">
                 <option selected value="">Empresas</option>
@@ -104,17 +111,20 @@ foreach ($listaUsuario as $usuario) {
                 ?>
             </select>
 
-            <select name="usuarioVisita" required="">
-                <option selected value="">Usuários</option>
 
-                <?php
-                foreach ($listaUsuario as $usuario) {
-                    $nome = $usuario->getNome();
-                    echo "<option value='$nome'>$nome</option>";
-                }
-                ?>
 
-            </select>
+<!--            <select name="usuarioVisita" required="">
+    <option selected value="">Usuários</option>
+
+                //<?php
+//                foreach ($listaUsuario as $usuario) {
+//                    $nome = $usuario->getNome();
+//                    echo "<option value='$nome'>$nome</option>";
+//                }
+//                
+            ?>
+
+</select>-->
 
             <label>Hora de Entrada</label>
             <input type="datetime-local" name="horaDeInicioVisita" required=""/>

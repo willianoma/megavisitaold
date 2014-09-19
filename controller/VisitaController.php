@@ -18,6 +18,12 @@ class VisitaController {
         include 'view/web/visita/ListarVisitas.php';
     }
 
+    function getUsuarioLogado() {
+        $_REQUEST['usuarioLogado'];
+        $usuarioSessao = $_SESSION['user'];
+        var_dump($usuarioSessao);
+    }
+
     function VisitaController() {
         $this->empresaDao = new EmpresaDao;
         $this->usuarioDao = new UsuarioDao;
@@ -27,6 +33,8 @@ class VisitaController {
     function formCadastrarVisita() {
         $_REQUEST['listaEmpresa'] = $this->empresaDao->listar();
         $_REQUEST['listaUsuario'] = $this->usuarioDao->listar();
+        $usuarioSessao = $_SESSION['user'];
+        $_REQUEST['usuarioLogado'] = $usuarioSessao->getNome();
         include_once 'view/web/visita/CadastrarVisita.php';
     }
 
@@ -68,6 +76,13 @@ class VisitaController {
         die();
     }
 
+    function converterData($data) {
+
+        $dataForm = strtotime($data);
+        $dataFormatada = date("d/m/Y h:i:sa", $dataForm);
+        return $dataFormatada;
+    }
+
     function cadastrarVisita() {
 
 
@@ -78,6 +93,11 @@ class VisitaController {
         $corretiva = $_POST['corretivaVisita'];
         $horaDeInicio = $_POST['horaDeInicioVisita'];
         $horaDeTermino = $_POST['horaDeTerminoVisita'];
+
+        $horaDeInicioFormatada = $this->converterData($horaDeInicio);
+        $horaDeTerminoForamatada = $this->converterData($horaDeTermino);
+
+
         if (empty($_POST['var_escondida'])) {
             $this->erro = "Impossivel cadastrar sem localização";
             echo $this->erro;
@@ -85,12 +105,14 @@ class VisitaController {
         } else
             $localization = $_POST['var_escondida'];
 
+
+
         date_default_timezone_set('UTC');
         $horaLocal = date('d-m-Y H:i:s');
 
         $id = "";
 
-        $visita = new Visita($id, $empresa, $usuario, $descricao, $pendencias, $corretiva, $horaDeInicio, $horaDeTermino, $localization, $horaLocal);
+        $visita = new Visita($id, $empresa, $usuario, $descricao, $pendencias, $corretiva, $horaDeInicioFormatada, $horaDeTerminoForamatada, $localization, $horaLocal);
         $this->visitaDao->cadastrar($visita);
     }
 

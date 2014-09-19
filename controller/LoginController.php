@@ -18,7 +18,6 @@ class LoginController {
         include 'view/mobile/login/autenticacao.php';
     }
 
-
     function autenticar() {
 
         $email = $_POST['email'];

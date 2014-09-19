@@ -5,11 +5,13 @@
 </head>
 
 <?php
-
 include_once 'model/verificaBrowser.php';
 include 'model/Usuario.php';
 
+//session_cache_limiter('private');
+session_cache_expire(1); //Arrumar isso ai...
 session_start();
+
 if (empty($_SESSION['user'])) {
     $user = NULL;
 } else {
@@ -20,13 +22,14 @@ if (empty($_SESSION['user'])) {
 
 if ($user == NULL) {
 
-    if (empty($_GET['controller'])) {
-        $controller = 'Login';
-        $controller .= 'Controller';
-    } else {
-        $controller = "Login";
-        $controller .= 'Controller';
-    }
+//    if (empty($_GET['controller'])) {
+    $controller = 'Login';
+    $controller .= 'Controller';
+//    }
+//    else {
+//        $controller = "Login";
+//        $controller .= 'Controller';
+//    }
 
     $arquivo = 'controller/' . $controller . '.php';
     require_once $arquivo;
@@ -40,6 +43,8 @@ if ($user == NULL) {
     } else {
         $acao = "autenticar";
     }
+    
+    
 } else if ($user != NULL) {
 
     if (empty($_GET['controller'])) {
@@ -94,7 +99,6 @@ if ($user == NULL) {
 ?>
 
 <?php
-
 $obj = new $controller(); //Cria o objeto do controller
 $obj->$acao(); //executa a a��o
 ?>
