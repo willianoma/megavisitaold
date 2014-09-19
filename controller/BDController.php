@@ -2,7 +2,7 @@
 
 $banco = "bancohora";
 $usuario = "root";
-$senha = "12310";
+$senha = "";
 $hostname = "localhost";
 $conn = mysql_connect($hostname, $usuario, $senha);
 mysql_select_db($banco);
@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `visita` (
   `horaDeInicio` varchar(255) NOT NULL,
   `horaDeTermino` varchar(255) NOT NULL,
   `localization` varchar(255) NOT NULL,
-  `horaVisita` varchar(255) NOT NULL,
+  `horaLocal` varchar(255) NOT NULL,
   UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;';
         $result = mysql_query($sql) or die(mysql_error());

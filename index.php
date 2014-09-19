@@ -6,11 +6,13 @@
 
 <?php
 include_once 'model/verificaBrowser.php';
-include 'model/Usuario.php';
+include_once 'model/Usuario.php';
 
 //session_cache_limiter('private');
-session_cache_expire(1); //Arrumar isso ai...
+//session_cache_expire(1); //Arrumar isso ai...
 session_start();
+//session_destroy();
+
 
 if (empty($_SESSION['user'])) {
     $user = NULL;
@@ -43,8 +45,6 @@ if ($user == NULL) {
     } else {
         $acao = "autenticar";
     }
-    
-    
 } else if ($user != NULL) {
 
     if (empty($_GET['controller'])) {
@@ -57,6 +57,7 @@ if ($user == NULL) {
 
     $arquivo = 'controller/' . $controller . '.php';
     require_once $arquivo;
+
 
     $permicao = $user->getPermicao();
 
