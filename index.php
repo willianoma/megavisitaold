@@ -9,7 +9,7 @@ include_once 'model/verificaBrowser.php';
 include_once 'model/Usuario.php';
 
 //session_cache_limiter('private');
-//session_cache_expire(1); //Arrumar isso ai...
+session_cache_expire(1); //Arrumar isso ai...
 session_start();
 //session_destroy();
 

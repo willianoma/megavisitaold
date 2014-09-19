@@ -1,30 +1,100 @@
 <head>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="script.js"></script>   
     <style type="text/css">
-        td {
-            padding-left: 10px;
-            padding-right: 10px;
-            padding-top: 5px;
+        /*        #linhaDetalhe{
+                    border: 1px solid;
+                    padding: 10px;
+                    width: 1200px;
+               
+        
+                }       
+                 
+                  
+        */                
+        td{
+            height: 50px;
+        }
+
+        #tabela{
+            border: 1px solid;
+            padding: 10px;
+
+            width: 1200px;
+            min-width: 1200px;
+            max-width: 1400px;
+            border-collapse: collapse;
             text-align: center;
 
-        }
-        tr {
 
         }
+
+
+
     </style>
 
 </head>
+
 <div style="margin: 20px;">
     <h1>Visitas</h1>
     <!--<p><strong> <a href="?controller=Visita&acao=formCadastrarVisita">Cadastrar novo usuario</a>-->
 </strong>
 </p>
 
+<script>
+    $(function() {
+        $("#tabela input").keyup(function() {
+            var index = $(this).parent().index();
+            var nth = "#tabela td:nth-child(" + (index + 1).toString() + ")";
+            var valor = $(this).val().toUpperCase();
+            $("#tabela tbody tr").show();
+            $(nth).each(function() {
+                if ($(this).text().toUpperCase().indexOf(valor) < 0) {
+                    $(this).parent().hide();
+                }
+            });
+        });
 
+        $("#tabela input").blur(function() {
+            $(this).val("");
+        });
+    });
+</script>
 
+<!--<table id="tabela" >
 
+    <th><input type="text" id="txtColuna1" hidden="" style="width: 50px;"/></th>
+    <th><input type="text" id="txtColuna2"/></th>
+    <th><input type="text" id="txtColuna3"/></th>
+    <th><input type="text" id="txtColuna4"/></th>
+    <th><input type="text" id="txtColuna5"/></th>
+    <th><input type="text" id="txtColuna6"/></th>
+    <th><input type="text" id="txtColuna7" hidden=""/></th>
+    <th><input type="text" id="txtColuna8" hidden=""/></th>
+    <th><input type="text" id="txtColuna9"/></th>
+    <th><input type="text" id="txtColuna10"/></th>
+    <th><input type="text" id="txtColuna11"/></th>
+   
+</table>-->
 
-<table border=2 cellspacing=0 >
+<br>
+
+<table border="1" id="tabela" >
+
     <tr><td>id</td><td>Empresa</td><td>Hora Entrada</td><td>Hora Saída</td><td>Descrição</td><td>Pendencias</td><td>Corretiva</td><td>Usuário</td><td>Localização</td><td>Hora do Cadastro</td><td colspan="2">Ações</td></tr>
+
+    <th><input type="text" id="txtColuna1" hidden="" style="width: 50px;"/></th>
+    <th><input type="text" id="txtColuna2" style="width: 130px;" /></th>
+    <th><input type="text" id="txtColuna3" style="width: 130px;" /></th>
+    <th><input type="text" id="txtColuna4" style="width: 130px;" /></th>
+    <th><input type="text" id="txtColuna5" style="width: 130px;" /></th>
+    <th><input type="text" id="txtColuna6" style="width: 130px;" /></th>
+    <th><input type="text" id="txtColuna7" style="width: 130px;" ></th>
+    <th><input type="text" id="txtColuna8" style="width: 130px;" ></th>
+    <th><input type="text" id="txtColuna9" style="width: 130px;" /></th>
+    <th><input type="text" id="txtColuna10" style="width: 130px;" /></th>
+    <th><input type="text" id="txtColuna11" style="width: 130px;" /></th>
+
     <?php
     $listaVisitas = $_REQUEST['listaVisita'];
 

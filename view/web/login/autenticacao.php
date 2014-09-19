@@ -44,4 +44,3 @@
         </form>
     </div>
 </div>
-<a href="view/ConfigBD.php"> configurar banco</a>
