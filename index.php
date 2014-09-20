@@ -1,10 +1,7 @@
-<meta charset="utf-8">
 
-<head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-</head>
 
 <?php
+
 include_once 'model/verificaBrowser.php';
 include_once 'model/Usuario.php';
 
@@ -103,3 +100,8 @@ if ($user == NULL) {
 $obj = new $controller(); //Cria o objeto do controller
 $obj->$acao(); //executa a a��o
 ?>
+<meta charset="utf-8">
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+</head>
