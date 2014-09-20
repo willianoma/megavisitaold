@@ -42,36 +42,39 @@
 <head>
 
 <div class="divtop">
-    <p id="demo" >Clique para localizar</p>
+    <p id="demo" ></p>
     <button class="Buttons" onclick="getLocation()">Localizar</button>
-</div>
 
-<script type='text/javascript'>
 
-    var x = document.getElementById("demo");
+    <script type='text/javascript'>
 
-    function getLocation() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition);
-        } else {
-            x.innerHTML = "Geolocation is not supported by this browser.";
+        var x = document.getElementById("demo");
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
         }
-    }
 
-    function showPosition(position) {
-        x.innerHTML = "Latitude: " + position.coords.latitude +
-                "<br>Longitude: " + position.coords.longitude;
-        var lat = position.coords.latitude;
-        var long = position.coords.longitude;
-        envia_form(lat, long);
+        function showPosition(position) {
+            x.innerHTML = "Latitude: " + position.coords.latitude +
+                    "<br>Longitude: " + position.coords.longitude;
+            var lat = position.coords.latitude;
+            var long = position.coords.longitude;
+            envia_form(lat, long);
 
-    }
+        }
 
-    function envia_form(lat, long) {
-        var strEscondida = lat + " , " + long;
-        document.getElementById('var_escondida').value = strEscondida;
-    }
-</script>  
+        function envia_form(lat, long) {
+            var strEscondida = lat + " , " + long;
+            document.getElementById('var_escondida').value = strEscondida;
+        }
+
+    </script>  
+</div>
+</head>
 
 <style type="text/css">
     select {
@@ -136,7 +139,7 @@ foreach ($listaUsuario as $usuario) {
 
 <div class="divPrincipal">
     <form method="POST" action="?controller=Visita&acao=cadastrarVisita">
-        <input type="text" name="var_escondida" required id="var_escondida" hidden="" style="width: 100%;" />
+        <input type="text" name="var_escondida" required id="var_escondida" style="width: 100%;" />
         <div style="width: auto;">
 
 

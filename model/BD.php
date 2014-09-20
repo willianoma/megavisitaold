@@ -1,11 +1,11 @@
 <?php
 
-$banco = "bancohora";
+$banco = "megavisita";
 $usuario = "root";
-$senha = "";
+$senha = "12310";
 $hostname = "localhost";
 $conn = mysql_connect($hostname, $usuario, $senha);
-mysql_select_db($banco) or die("Não foi possível conectar ao banco MySQL");
+mysql_select_db($banco) ;
 if (!$conn) {
     echo "Não foi possível conectar ao banco MySQL.
 ";

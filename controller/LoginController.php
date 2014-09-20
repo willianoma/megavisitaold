@@ -1,6 +1,6 @@
 <?php
 
-include 'dao/UsuarioDao.php';
+include_once 'dao/UsuarioDao.php';
 include_once 'model/Usuario.php';
 
 class LoginController {
